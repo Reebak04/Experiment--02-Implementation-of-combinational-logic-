@@ -30,25 +30,33 @@ The input and output variables are allocated with letter symbols. The exact trut
 Program to implement the given logic function and to verify its operations in quartus using Verilog programming.
 Developed by: Tejusve Kabeer.F
 RegisterNumber: 212222100054
-```python
-module cpmbine(a,b,c,d,f);
-input a,b,c,d;
-output f;
-wire p,q,r;
-assign p=(~c & b & a);
-assign q=(~d & c & c & a);
-assign r=(c & ~b & a);
-assign f=(~(~p & ~q & ~r));
-endmodule
 
-module combine1(a,b,c,d,f);
-input a,b,c,d;
-output f;
-wire p,q,r;
-assign p=(c & ~b & a);
-assign q=(d & ~c & a);
-assign r=(c & ~b & a);
-assign f=((p | q & |r));
+### F1= A’B’C’D’+AC’D’+B’CD’+A’BCD+BC’D
+```python
+module f1(A,B,C,D,F1);
+input A,B,C,D;
+output F1;
+wire p,q,r,s,t;
+assign p = (~A & ~B & ~C & ~D);
+assign q = (A & ~C & ~D);
+assign r = (~B & C & ~D);
+assign s = (~A & B & C & D);
+assign t = (B & ~C & D);
+assign F1 = p | q | r | s | t;
+endmodule
+```
+### F2=xy’z+x’y’z+w’xy+wx’y+wxy
+```
+module imp(w,x,y,z,F2);
+input w,x,y,z;
+output F2;
+wire p,q,r,s,t;
+assign p= (x & ~y & z);
+assign q= (~x & ~y & z);
+assign r= (~w & x & y);
+assign s= (w & ~x & y);
+assign t= (w & x & y);
+assign F2= p | q | r | s | t;
 endmodule
 ```
 */
@@ -58,18 +66,14 @@ endmodule
 ## RTL
 
 ### F1
-![Screenshot (50)](https://user-images.githubusercontent.com/118364993/233889662-994e5857-2994-48a0-b619-1e10365249bd.png)
-
+![image](https://github.com/Reebak04/Experiment--02-Implementation-of-combinational-logic-/assets/118364993/078a8fab-54a8-47a7-836d-a7ed5cf49517)
 ### F2
-![Screenshot (51)](https://user-images.githubusercontent.com/118364993/233889715-d1897588-8644-4388-bccd-d841da215321.png)
-
+![image](https://github.com/Reebak04/Experiment--02-Implementation-of-combinational-logic-/assets/118364993/286a2688-8d48-4594-9460-05c28d665eac)
 ## Timing Diagram
 
 ### F1
-![Screenshot (52)](https://user-images.githubusercontent.com/118364993/233889967-48ef4e70-1ed0-4875-9d16-7f3be0444b47.png)
-
+![image](https://github.com/Reebak04/Experiment--02-Implementation-of-combinational-logic-/assets/118364993/804e2710-e610-4bd2-b14e-8b208082f604)
 ### F2
-![Screenshot (53)](https://user-images.githubusercontent.com/118364993/233890139-551bcd5e-0899-4d8e-a155-b0f3ac664154.png)
-
+![image](https://github.com/Reebak04/Experiment--02-Implementation-of-combinational-logic-/assets/118364993/f47bcd88-719f-4785-9f29-681bb9757ca5)
 ## Result:
 Thus the given logic functions are implemented using  and their operations are verified using Verilog programming.
